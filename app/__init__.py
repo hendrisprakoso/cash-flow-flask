@@ -14,4 +14,6 @@ app.config['MYSQL_DB'] = 'cash_flow'
 mysql = MySQL(app)
 
 
-from app.endpoints.users import usersController
+from app.endpoints.users import (usersController)
+from app.endpoints.transaction import (topupController)
+from app.endpoints.report import (reportTransactionController)
