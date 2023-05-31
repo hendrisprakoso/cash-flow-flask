@@ -16,8 +16,7 @@ def reportTransactions():
             return responseJson(200, {'method' : request.method, 'status' : False, 'message' : 'Username is not Exists!'})    
         else:
             data_report_transaction = getDataReportTransaction(request_json['account_id'])
-            print('data_report_transaction : ', data_report_transaction)
-            
+                        
             return responseJson(200, {'method' : request.method, 'status' : True, 'message' : f'Topup Successfully!', 'data' : data_report_transaction})
     except Exception as error:
         return responseJson(500, {'method' : request.method, 'status' : False, 'message' : f'[ERROR] : {str(error)}', 'data' : []})
