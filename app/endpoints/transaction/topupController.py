@@ -4,8 +4,10 @@ from flask import request
 
 from app.utility.response import responseJson
 from app.repository.transaction.topupRepo import *
+from app.middleware.token import token_validation
 
 @app.route('/topup-saldo', methods=['POST'])
+@token_validation
 def topupController():
     try:
 
@@ -23,6 +25,7 @@ def topupController():
 
 
 @app.route('/payment', methods=['POST'])
+@token_validation
 def paymentProcess():
     try:
 

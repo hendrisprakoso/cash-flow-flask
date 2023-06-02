@@ -10,3 +10,7 @@ MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = ''
 MYSQL_DB = 'cash_flow'
+
+# Configure for JWT
+SALT_JWT_CF = 'CF2023'
+JWT_ALGORITHM = 'HS256'

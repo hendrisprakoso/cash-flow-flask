@@ -5,6 +5,7 @@ from flask import request
 from app.utility.response import responseJson
 from app.repository.users.usersRepo import *
 from app.middleware.encrypt import encryptPassword
+from app.middleware.token import token_validation
 
 
 def passwordIsCorrect(p_username, p_password):
@@ -25,6 +26,7 @@ def passwordIsCorrect(p_username, p_password):
 
 @app.route('/users', methods=['GET', 'POST', 'PUT', 'DELETE'])
 @app.route('/users/', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@token_validation
 def usersController():
     if request.method == 'GET':
         try:
@@ -91,6 +93,7 @@ def usersController():
 
 
 @app.route('/users/<id>', methods=['POST'])
+@token_validation
 def userControllerbyId(id):
     data_user = getDataUserByUsername(id)
     return responseJson(200, {'status' : True, 'message': 'success', 'data' : data_user})
@@ -98,6 +101,7 @@ def userControllerbyId(id):
 
 @app.route('/user/login', methods=['POST'])
 @app.route('/user/login/', methods=['POST'])
+@token_validation
 def userLogin():
     request_json = request.get_json()
 
