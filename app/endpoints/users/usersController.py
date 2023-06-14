@@ -101,7 +101,6 @@ def userControllerbyId(id):
 
 @app.route('/user/login', methods=['POST'])
 @app.route('/user/login/', methods=['POST'])
-@token_validation
 def userLogin():
     request_json = request.get_json()
 
@@ -113,5 +112,5 @@ def userLogin():
         return responseJson(404, {'status' : False, 'message' : passwrod_is_correct['message']})
     
     else:
-        return responseJson(passwrod_is_correct['status_code'], {'status' : False, 'message' : passwrod_is_correct['message'], 'data' : passwrod_is_correct['data']})
+        return responseJson(passwrod_is_correct['status_code'], {'status' : True, 'message' : passwrod_is_correct['message'], 'data' : passwrod_is_correct['data']})
 

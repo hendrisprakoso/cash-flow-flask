@@ -2,6 +2,10 @@ import hashlib, base64
 
 
 def encryptPassword(value):
+	
+	if value in ('', None):
+		return value
+	
 	# hashing with base64
 	b_enc_base64 = base64.b64encode(bytes(value, 'utf-8')) 
 	encrypt_str = b_enc_base64.decode('utf-8') 
