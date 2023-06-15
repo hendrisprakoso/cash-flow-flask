@@ -28,7 +28,7 @@ def topupSaldoUser(p_topup, p_id_account):
 		if(cur):
 			cur.close()
 
-def paymentProduct(p_payment_method, p_tot_payment, p_id_account, p_destination, p_notes):
+def paymentProduct(p_payment_method, p_tot_payment, p_id_account, p_destination, p_notes, p_category):
 	try:
 		cur = mysql.connection.cursor()
 		sql_query_topup = '''
@@ -41,10 +41,10 @@ def paymentProduct(p_payment_method, p_tot_payment, p_id_account, p_destination,
 		
 		sql_query_log = '''
 							INSERT INTO cash_flow.cash_flow
-							(`type`, destination, debit, id_account, notes)
-							VALUES('{}', '{}', {}, {}, '{}')
+							(`type`, destination, debit, id_account, notes, category)
+							VALUES('{}', '{}', {}, {}, '{}', {})
 
-						'''.format(p_payment_method, p_destination, p_tot_payment, p_id_account, p_notes)
+						'''.format(p_payment_method, p_destination, p_tot_payment, p_id_account, p_notes, p_category)
 		cur.execute(sql_query_log)
 		
 		cur.connection.commit()

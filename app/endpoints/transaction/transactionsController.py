@@ -13,9 +13,7 @@ def topupController():
 
         request_json = request.get_json()
 
-        print('request_json : ', request_json)
         topup = topupSaldoUser(request_json['topup'], request_json['account_id'])
-        print('topup : ', topup)
         if topup :
             return responseJson(200, {'method' : request.method, 'status' : True, 'message' : f'Topup Successfully!'})
         
@@ -28,13 +26,10 @@ def topupController():
 @token_validation
 def paymentProcess():
     try:
-
         request_json = request.get_json()
-        print('request_json : ', request_json)
 
         payment = paymentProduct(request_json['payment_method'], request_json['payment'], request_json['account_id'],
-                                request_json['payment_receipt'], request_json['notes'])
-        print('payment : ', payment)
+                                request_json['payment_receipt'], request_json['notes'], request_json['category'])
         if payment:
             return responseJson(200, 
                                 {'method' : request.method, 'status' : True, 
